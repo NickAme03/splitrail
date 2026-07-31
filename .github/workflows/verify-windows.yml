@@ -1,0 +1,23 @@
+# Temporary verification workflow. Not part of any proposed change.
+#
+# checks.yml runs clippy and fmt on ubuntu only, and never runs cargo test.
+# This runs the test suite on both platforms so that a failure on Windows can be
+# told apart from a failure of the suite itself.
+name: verify-windows
+on: push
+
+jobs:
+  test:
+    name: test on ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: cargo test
+        run: cargo test --locked
