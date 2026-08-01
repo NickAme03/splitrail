@@ -865,18 +865,6 @@ fn populate_defaults(
         },
         false
     );
-    add_dated_pricing!(
-        "gpt-5.6-terra",
-        NaiveDate::from_ymd_opt(2026, 7, 30).expect("valid date"),
-        PricingStructure::Flat {
-            input_per_1m: 2.50,
-            output_per_1m: 15.0
-        },
-        CachingSupport::OpenAIWithWrites {
-            cache_write_per_1m: 3.125,
-            cache_read_per_1m: 0.25
-        }
-    );
     add_model!(
         "gpt-5.6-luna",
         PricingStructure::Flat {
@@ -888,18 +876,6 @@ fn populate_defaults(
             cache_read_per_1m: 0.02
         },
         false
-    );
-    add_dated_pricing!(
-        "gpt-5.6-luna",
-        NaiveDate::from_ymd_opt(2026, 7, 30).expect("valid date"),
-        PricingStructure::Flat {
-            input_per_1m: 1.0,
-            output_per_1m: 6.0
-        },
-        CachingSupport::OpenAIWithWrites {
-            cache_write_per_1m: 1.25,
-            cache_read_per_1m: 0.10
-        }
     );
 
     add_model!(
