@@ -1,0 +1,11 @@
+# Workflow temporaneo, vive solo su questo ramo del fork e non entra nella
+# pull request: serve a eseguire la suite, che checks.yml non esegue mai.
+name: verifica temporanea
+on: [push, workflow_dispatch]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - run: cargo test --locked
